@@ -79,7 +79,10 @@ const Settings = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: 10,
+          width: '400px',
+          p: 5,
+          m: '100px auto',
+          backgroundColor: 'rgb(157 143 117 / 50%);'
         }}>
         {/* <Typography variant="h1" sx={{ textAlign: "center" }}>
           Settings

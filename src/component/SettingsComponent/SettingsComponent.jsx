@@ -11,17 +11,20 @@ const SettingsComponent = ({
   blurHandler,
 }) => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box sx={{ display: "flex", justifyContent: "center"}}>
       <Typography
+         autoComplete="off"
         sx={{
           display: "flex",
           alignItems: "center",
           width: 200,
           fontWeight: 900,
+        
         }}>
         {label}
       </Typography>
       <TextField
+         autoComplete="off"
         sx={{ wisth: 200 }}
         margin="normal"
         label={name}

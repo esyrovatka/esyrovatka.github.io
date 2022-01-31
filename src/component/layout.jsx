@@ -8,6 +8,7 @@ import logo4 from "../image/logo4.jpg";
 import logo5 from "../image/logo5.jpg";
 import logo6 from "../image/logo6.jpg";
 import login from "../image/login.jpg";
+import settings from "../image/settings.jpg";
 import registration from "../image/registration.jpg";
 import { useLocation } from "react-router";
 
@@ -40,7 +41,7 @@ const Layout = ({ children }) => {
       imgLogo = logo5;
       break;
     case "/settings":
-      imgLogo = logo6;
+      imgLogo = settings;
       break;
 
     case "/login":
