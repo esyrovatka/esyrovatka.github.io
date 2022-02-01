@@ -9,7 +9,7 @@ import { currentUserError, isAuthorized } from "../../redux/selectors.js";
 import { AuthType } from "../../constants/Auth";
 import { PagePaths } from "../../constants/PagePaths";
 
-const AuthContainer = ({ type }) => {
+const AuthContainer = ({ type, main_img, text }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currUserError = useSelector(currentUserError);
@@ -68,6 +68,8 @@ const AuthContainer = ({ type }) => {
       type={type}
       disableForm={disableForm}
       errorMessage={currUserError}
+      main_img={main_img}
+      text={text}
     />
   );
 };

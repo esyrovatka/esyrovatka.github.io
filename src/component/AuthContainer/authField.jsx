@@ -5,12 +5,12 @@ import {
   Container,
   Box,
   Typography,
-  Avatar,
   TextField,
   Button,
   Link,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material/";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { AuthType } from "../../constants/Auth";
 import { ErrorMessage, HelpMessage } from "../../constants/ErrorMessage";
 
@@ -22,28 +22,28 @@ const AuthField = ({
   type,
   disableForm,
   errorMessage,
+  main_img,
+  text,
 }) => {
   return (
     <AuthPage>
-      <Box className="form-group">
-        <Box className="form-avatar">
-          <Avatar className="form-avatar-icon">
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography className="form-avatar-title" component="h1" variant="h5">
-            {type}
-          </Typography>
-        </Box>
+      <Box className="page-auth-form">
+        <Typography className="page-title" component="h1" variant="h3">
+          <span className="blueTitle">FIT</span> <span>TRAINER.</span>
+        </Typography>
+
         <Box
           component="form"
           className="form-field"
           onSubmit={submitFunc}
           noValidate
           sx={{ mt: 1 }}>
+          <Typography className="welcome" component="h2" variant="h5">
+            {text}
+          </Typography>
+
           <TextField
-            margin="normal"
             required
-            fullWidth
             id="email"
             label="Email Address"
             placeholder="Example@gmail.com"
@@ -52,13 +52,12 @@ const AuthField = ({
             onChange={handleChange}
             value={user.email}
             autoComplete="off"
+            className="form-field-login"
           />
 
           <TextField
-            className="form-password"
-            margin="normal"
+            className="form-field-login"
             required
-            fullWidth
             placeholder="******"
             name="password"
             label="Password"
@@ -78,87 +77,146 @@ const AuthField = ({
               {ErrorMessage.AlreadyUse}
             </Typography>
           )}
+          <Box className="auth-checkbox-field">
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              label="Remember me"
+            />
+            <Link variant="body2" className="help-link">
+              Forgot password?
+            </Link>
+          </Box>
+
           <Button
             className="form-auth-btn"
             type="submit"
-            fullWidth
             variant="contained"
             disabled={disableForm}
             sx={{ mt: 3, mb: 2 }}>
             {type}
           </Button>
-          <Link onClick={helpLink} variant="body2" sx={{ cursor: "pointer" }}>
-            {type === AuthType.SignIn
-              ? HelpMessage.CreateAcc
-              : HelpMessage.LoginAcc}
+          <Link variant="body2" className="help-link">
+            {type === AuthType.SignIn ? (
+              <>
+                {HelpMessage.CreateAcc} <span onClick={helpLink}>Sign Up</span>
+              </>
+            ) : (
+              <>
+                {HelpMessage.LoginAcc} <span onClick={helpLink}>Sign In</span>
+              </>
+            )}
           </Link>
         </Box>
       </Box>
+
+      <Box
+        className="img-auth"
+        style={{ backgroundImage: `url(${main_img})` }}></Box>
     </AuthPage>
   );
 };
 
 const AuthPage = styled(Container)`
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+  min-width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  .form-group {
-    max-width: 300px;
-    background-color: rgb(65, 58, 58, 0.9);
-    margin: 50px;
-    padding: 50px;
-    border: 1px solid #21c9a6;
-    .form-avatar {
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+
+  .img-auth {
+    font-family: "Poppins", sans-serif;
+    width: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (max-width: 1100px) {
+      display: none;
+    }
+  }
+  .page-auth-form {
+    width: 50%;
+    padding-top: 60px;
+    padding-left: 100px;
+    @media (max-width: 1100px) {
+      padding-top: 0px;
+      padding-left: 0px;
+      width: 100%;
+      text-align: center;
       display: flex;
+      justify-content: center;
       flex-direction: column;
       align-items: center;
-      .form-avatar-icon {
-        margin: 10px;
-        background-color: #21c9a6;
-      }
-      .form-avatar-title {
-        color: #21c9a6;
-        font-weight: 600;
-      }
     }
 
-    .form-field {
-      label {
-        color: #21c9a6;
-      }
-      .MuiOutlinedInput-input {
-        color: #21c9a6;
-      }
-      .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-        color: #21c9a6;
-      }
-      .Mui-focused fieldset {
-        border: 1px solid #21c9a6;
-      }
-    }
-    .form-auth-btn {
-      color: #fff;
-      border: 1px solid #21c9a6;
-    }
-    .form-auth-btn:hover {
-      color: #413a3a;
+    .page-title {
+      font-family: "Poppins", sans-serif;
       font-weight: 900;
+      font-size: 25px;
+      line-height: 37px;
+      text-transform: uppercase;
+
+      .blueTitle {
+        color: #2d9cdb;
+      }
     }
-    .css-1vhaqj4-MuiButtonBase-root-MuiButton-root {
-      background-color: #21c9a6;
-    }
-    .css-1vhaqj4-MuiButtonBase-root-MuiButton-root:hover {
-      box-shadow: 5px 3px 3px #000;
-    }
-    .Mui-disabled {
-      background-color: rgb(65, 58, 58, 0.6);
-    }
-    .css-16cu1k8-MuiTypography-root-MuiLink-root {
-      color: #21c9a6;
+    .form-field {
+      padding-top: 200px;
+      display: flex;
+      flex-direction: column;
+
+      .welcome {
+        font-family: Poppins;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 45px;
+        color: #000000;
+      }
+
+      .form-field-login {
+        margin: 20px 0px;
+        width: 380px;
+        height: 50px;
+
+        border-radius: 5px;
+        .MuiOutlinedInput-root {
+          background: rgba(45, 156, 219, 0.1);
+        }
+      }
+
+      .form-auth-btn {
+        width: 380px;
+        height: 50px;
+        background: #2d9cdb;
+        border-radius: 5px;
+        color: #fff;
+      }
+
+      .auth-checkbox-field {
+        display: flex;
+        align-items: center;
+        width: 380px;
+        justify-content: space-between;
+        font-family: Poppins;
+        font-size: 14px;
+        line-height: 21px;
+        color: #363636;
+        .help-link {
+          cursor: pointer;
+        }
+      }
+
+      .help-link {
+        color: #000;
+        text-decoration: none;
+        span {
+          cursor: pointer;
+          color: #2d9cdb;
+        }
+      }
     }
   }
 `;
-
 AuthField.defaultProps = {
   submitFunc: () => {},
   handleChange: () => {},

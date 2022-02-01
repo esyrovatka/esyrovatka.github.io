@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,7 +22,7 @@ const Dashboard = () => {
     marginBottom: 10,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
     height: "65vh",
   };
@@ -78,9 +79,9 @@ const Dashboard = () => {
     !Loading ? (
       <Box component="main" sx={{ width: "100%" }}>
         <Header name="Dashboard" />
-        <Box sx={style}>
+        <Box sx={style}  >
           <CalendarComponent workoutData={workoutData} sx={{ width: "50%" }} />
-          <Box>
+          <PreviewBox >
             {currWorkout ? (
               <>
                 <Typography variant="h3" gutterBottom component="div">
@@ -89,6 +90,7 @@ const Dashboard = () => {
 
                 {currWorkout.exerciseList.map((item, index) => (
                   <WorkoutPreview
+                  className="workout-preview"
                     key={item._id}
                     exercise={item}
                     index={index}
@@ -106,7 +108,7 @@ const Dashboard = () => {
                 </Button>
               </>
             )}
-          </Box>
+          </PreviewBox>
         </Box>
       </Box>
     ) : (
@@ -116,5 +118,15 @@ const Dashboard = () => {
     <Redirect to="/login" />
   );
 };
+
+const PreviewBox = styled(Box)`
+background-color: rgb(141 131 131 / 50%);
+padding: 40px;
+color: #21c9a6;
+button{
+color: #21c9a6;
+}
+
+`
 
 export default Dashboard;

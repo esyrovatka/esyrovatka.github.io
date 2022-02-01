@@ -6,7 +6,6 @@ import logo2 from "../image/logo2.jpg";
 import logo3 from "../image/logo3.jpg";
 import logo4 from "../image/logo4.jpg";
 import logo5 from "../image/logo5.jpg";
-import logo6 from "../image/logo6.jpg";
 import login from "../image/login.jpg";
 import settings from "../image/settings.jpg";
 import registration from "../image/registration.jpg";
@@ -44,36 +43,32 @@ const Layout = ({ children }) => {
       imgLogo = settings;
       break;
 
-    case "/login":
-      imgLogo = login;
-      break;
+    // case "/login":
+    //   imgLogo = login;
+    //   break;
 
-    case "/register":
-      imgLogo = registration;
-      break;
+    // case "/register":
+    //   imgLogo = registration;
+    //   break;
 
     default:
       imgLogo = "";
       // imgLogo = logo;
       break;
   }
-
   return (
     <Box
       sx={{
-        backgroundColor: "#f4f4f4",
         backgroundImage: `url(${imgLogo})`,
         backgroundSize: "cover",
         display: "flex",
         padding: "0px",
         margin: "0px;",
         height: "100vh",
+        width: "100%",
       }}>
-      <NavPanel />
+      {currentPath !== "/login" && currentPath !== "/register" && <NavPanel />}
       {children}
-      {/* <Box sx={style}>
-        <Footer />
-      </Box> */}
     </Box>
   );
 };

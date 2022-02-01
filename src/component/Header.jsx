@@ -36,7 +36,7 @@ const Header = ({ name }) => {
         color: "purple",
         display: "flex",
         padding: "0 4%",
-        height: 50,
+        height: 100,
         alignItems: "center",
       }}>
       <Typography variant="h4" component="div">

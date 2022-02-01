@@ -4,6 +4,6 @@ export const ErrorMessage = {
 };
 
 export const HelpMessage = {
-  CreateAcc: "Don't have an account? Sign Up",
-  LoginAcc: "Have an account? Sign In",
+  CreateAcc: "Don't have an account?",
+  LoginAcc: "Have an account?",
 };

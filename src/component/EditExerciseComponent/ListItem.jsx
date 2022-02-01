@@ -16,8 +16,10 @@ export const ListItem = ({
     border: "1px solid gray",
     padding: "0.5rem 1rem",
     marginBottom: ".5rem",
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "antiquewhite",
     cursor: "move",
+    color: "#21c9a6",
+
   };
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({

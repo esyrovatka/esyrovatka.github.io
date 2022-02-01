@@ -13,7 +13,7 @@ const WorkoutPreview = ({ exercise, index }) => {
 
   return (
     currExercise && (
-      <Card sx={{ minWidth: 275, margin: 1 }}>
+      <Card sx={{ minWidth: 275, margin: 1, backgroundColor: "antiquewhite", borderRadius: 5 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Exercise {index + 1}

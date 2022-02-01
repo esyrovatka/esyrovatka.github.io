@@ -23,6 +23,7 @@ const EditExerciseComponent = ({ list, updList, deleteExercise }) => {
   useEffect(() => {
     updList(list);
   }, [list, updList]);
+        console.log(1)
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
