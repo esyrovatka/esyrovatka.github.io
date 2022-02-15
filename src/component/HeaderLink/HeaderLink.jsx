@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ListItem, ListItemButton } from "@mui/material/";
 import { useLocation } from "react-router";
 import "./HeaderLink.css";
-const HeaderLink = ({ clickHandler, name, invisible, path }) => {
+const HeaderLink = ({ clickHandler, name, invisible, path, icon }) => {
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState(location.pathname);
 
@@ -19,6 +19,7 @@ const HeaderLink = ({ clickHandler, name, invisible, path }) => {
         onClick={clickHandler}
         sx={{ justifyContent: "center " }}
         disabled={!!invisible}>
+        {icon && <img alt="icon" src={icon} />}
         {name}
       </ListItemButton>
     </ListItem>

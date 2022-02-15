@@ -1,8 +1,4 @@
-* {
-  /* color: rgb(48, 48, 48); */
-  font-family: "Roboto", sans-serif;
-}
-
 #main {
-  height: 100vh;
+  background-color: #f0f0f0;
+  min-height: 100vh;
 }

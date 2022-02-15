@@ -1,4 +1,5 @@
 import {
+  GET_CURRENT_USER,
   IS_AUTHORIZED,
   IS_LOGOUT,
   IS_UTHORIZED_LOADING,
@@ -6,11 +7,12 @@ import {
 } from "../constants.js";
 
 const initialState = {
-  isAuthorized: localStorage.token ? true : false,
+  isAuthorized: !!localStorage.token,
   currEmail: null,
   error: null,
   isLoading: false,
   name: "",
+  avatar: "",
 };
 
 export const userReducer = (state = initialState, { type, payload } = {}) => {
@@ -24,6 +26,17 @@ export const userReducer = (state = initialState, { type, payload } = {}) => {
         currEmail: payload.email,
         name: payload.name,
         isLoading: false,
+        avatar: payload.avatar,
+      };
+
+    case GET_CURRENT_USER:
+      return {
+        ...state,
+        isAuthorized: true,
+        currEmail: payload.email,
+        name: payload.name,
+        isLoading: false,
+        avatar: payload.avatar,
       };
     case IS_LOGOUT:
       return { ...state, isAuthorized: false, error: null, currEmail: null };

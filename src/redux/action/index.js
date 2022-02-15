@@ -11,6 +11,8 @@ import {
   GET_CURRENT_DATA,
   DELETE_WORKOUT,
   IS_UTHORIZED_LOADING,
+  GET_CURRENT_USER,
+  CREATE_NEW_WORKOUT,
 } from "../constants.js";
 import {
   createNewExerciseApi,
@@ -24,6 +26,7 @@ import {
   updateWorkoutApi,
   updExerciseApi,
   userUpdateApi,
+  getCurrUserApi,
 } from "../api/api";
 import store from "../store";
 import { attachUnauthHandler } from "../api/axiosConfig";
@@ -42,11 +45,21 @@ export const registrAction = (user) => async (dispatch) => {
 };
 
 export const loginAction = (user) => async (dispatch) => {
+  dispatch({ type: IS_UTHORIZED_LOADING });
   try {
-    dispatch({ type: IS_UTHORIZED_LOADING });
     const response = await loginApi(user);
     localStorage.setItem("token", response.data.token);
     dispatch({ type: IS_AUTHORIZED, payload: response.data.user[0] });
+  } catch (err) {
+    dispatch({ type: SET_USER_ERROR, payload: err.response.status });
+  }
+};
+
+export const getCurrUserAction = () => async (dispatch) => {
+  dispatch({ type: IS_UTHORIZED_LOADING });
+  try {
+    const response = await getCurrUserApi();
+    dispatch({ type: GET_CURRENT_USER, payload: response.data.user[0] });
   } catch (err) {
     dispatch({ type: SET_USER_ERROR, payload: err.response.status });
   }
@@ -133,10 +146,13 @@ export const getAllWorkout = () => async (dispatch) => {
   }
 };
 
-export const createWorkout = (workout) => async () => {
+export const createWorkout = (workout) => async (dispatch) => {
+  dispatch({ type: SET_WORKOUT_LOADING });
   try {
-    await createWorkoutApi(workout);
+    const response = await createWorkoutApi(workout);
+    dispatch({ type: CREATE_NEW_WORKOUT, payload: response.data });
   } catch (err) {
+    // dispatch({ type: SET_WORKOUT_ERROR})
     console.log(err);
   }
 };

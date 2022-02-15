@@ -4,6 +4,7 @@ export const IS_LOGOUT = "IS_LOGOUT";
 export const IS_UTHORIZED_LOADING = "IS_UTHORIZED_LOADING";
 export const SET_USER_ERROR = "SET_USER_ERROR";
 export const GET_CURRENT_DATA = "GET_CURRENT_DATA";
+export const GET_CURRENT_USER = "GET_CURRENT_USER";
 
 //exercise
 export const GET_ALL_EXERCISE = "GET_ALL_EXERCISE";

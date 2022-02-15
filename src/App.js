@@ -13,6 +13,8 @@ import VerificationEmail from "./page/VerificationEmail/VerificationEmail";
 import Settings from "./page/Settings";
 import "./App.css";
 import { PagePaths } from "./constants/PagePaths";
+import LoginContainer from "./component/LoginContainer";
+import Test from "./page/test";
 
 export default function App() {
   const pagesPathsList = [
@@ -25,6 +27,8 @@ export default function App() {
     { path: PagePaths.register, Component: <SignUp /> },
     { path: PagePaths.verification, Component: <VerificationEmail /> },
     { path: PagePaths.settings, Component: <Settings /> },
+    { path: PagePaths.settings, Component: <Settings /> },
+    { path: "/test", Component: <Test /> },
   ];
 
   return (
@@ -40,6 +44,8 @@ export default function App() {
           </Switch>
         </Layout>
       </Router>
+
+      <LoginContainer />
     </div>
   );
 }

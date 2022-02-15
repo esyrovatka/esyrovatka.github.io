@@ -5,6 +5,7 @@ import {
   GET_ALL_WORKOUT,
   GET_CURRENT_DATA,
   IS_LOGOUT,
+  CREATE_NEW_WORKOUT,
 } from "../constants.js";
 
 const initialState = {
@@ -23,6 +24,12 @@ export const workoutReducer = (
       return { ...state, isLoading: true };
     case GET_ALL_WORKOUT:
       return { ...state, workoutList: payload, isLoading: false };
+    case CREATE_NEW_WORKOUT:
+      const newArr = [...state.workoutList];
+      newArr.push(payload);
+
+      console.log(newArr, "NewArr");
+      return { ...state, workoutList: newArr, isLoading: false };
     case UPDATE_WORKOUT:
       return { ...state, workoutList: payload, isLoading: false };
     case GET_CURRENT_DATA:

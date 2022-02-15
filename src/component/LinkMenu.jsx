@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { currData, isAuthorized, workout } from "../redux/selectors.js";
 import HeaderLink from "./HeaderLink";
 import { PagePaths } from "../constants/PagePaths.js";
+import coolicon from "../image/coolicon.png";
 const LinkMenu = () => {
   const history = useHistory();
   const isAuth = useSelector(isAuthorized);
@@ -55,7 +56,12 @@ const LinkMenu = () => {
   }, [currWorkoutDate, allWorkout]);
   return isAuth ? (
     <>
-      <HeaderLink clickHandler={dashboardLink} name="Dashboard" path="/" />
+      <HeaderLink
+        clickHandler={dashboardLink}
+        name="Dashboard"
+        path="/"
+        icon={coolicon}
+      />
       <HeaderLink
         clickHandler={exerciseLink}
         name="New Exercise"

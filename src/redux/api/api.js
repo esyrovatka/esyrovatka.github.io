@@ -13,6 +13,10 @@ export const userUpdateApi = (user) => {
   return axiosInstance.post(`/user/update`, user);
 };
 
+export const getCurrUserApi = () => {
+  return axiosInstance.get(`/user`);
+};
+
 // Exercise api //
 export const getAllExerciseApi = () => {
   return axiosInstance.get(`/exercise`);
