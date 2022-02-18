@@ -1,22 +1,12 @@
-import { Button, CircularProgress, Grid, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useSelector } from "react-redux";
-import { exerciseList } from "../redux/selectors";
-import { useState } from "react";
-import { useEffect } from "react";
+import styled from "styled-components";
 const ExercisePreview = () => {
-  const allExercise = useSelector(exerciseList);
-
-  const [exercises, setExercises] = useState([]);
-
-  useEffect(() => {
-    setExercises(allExercise);
-  }, [allExercise]);
   return (
-    <Box style={itemStyle}>
+    <StyleBox>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography variant="h4" gutterBottom component="div" sx={{}}>
           Exercise list
@@ -35,12 +25,29 @@ const ExercisePreview = () => {
         name="Upright Dumbbell Row"
         repeat="3 sets/10reps"
       />
-    </Box>
+    </StyleBox>
   );
 };
 
 export default ExercisePreview;
 
+const StyleBox = styled(Box)`
+  margin: 0px auto;
+  background: #fff;
+  width: 50%;
+  padding: 50px;
+  border-radius: 25px;
+
+  @media (max-width: 1200px) {
+    margin: 20px auto;
+  }
+
+  @media (max-width: 900px) {
+    width: 95%;
+    padding: 50px 25px;
+    justify-content: center;
+  }
+`;
 const itemStyle = {
   backgroundColor: "#fff",
   borderRadius: "25px",

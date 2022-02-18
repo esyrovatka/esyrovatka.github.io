@@ -58,8 +58,12 @@ const CalendarComponent = ({ workoutData }) => {
   );
 };
 const Calendar = styled(Box)`
-  max-width: 300px;
   margin: 0 auto;
+  width: 40%;
+  max-width: 350px;
+  @media (max-width: 780px) {
+    max-width: 100%;
+  }
   .css-1snvurg-MuiPickerStaticWrapper-root {
     // color: #2d9cdb;
     background-color: #fff;

@@ -3,16 +3,13 @@ import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material/";
 import { useSelector } from "react-redux";
 import { currUserName } from "../redux/selectors";
+import styled from "styled-components";
 
 const Header = ({ name }) => {
   const currName = useSelector(currUserName);
 
   return (
-    <Box
-      sx={{
-        padding: "30px",
-        alignItems: "center",
-      }}>
+    <HeadeerStyle>
       <Typography
         variant="h4"
         component="div"
@@ -29,9 +26,18 @@ const Header = ({ name }) => {
         sx={{ color: "#BDBDBD", fontSize: "18px", lineHeight: "27px" }}>
         Welcome and let’s do some workout today.
       </Typography>
-    </Box>
+    </HeadeerStyle>
   );
 };
+
+const HeadeerStyle = styled(Box)`
+  padding: 30px;
+  align-items: center;
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+`;
+
 Header.defaultProps = {
   name: "",
 };

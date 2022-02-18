@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logoworkout from "../image/logoworkout.png";
 import { Box, Typography } from "@mui/material/";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import styled from "styled-components";
 
 const MyCarousel = ({ allWorkout }) => {
   const responsive = {
@@ -13,24 +14,19 @@ const MyCarousel = ({ allWorkout }) => {
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 768 },
       items: 2,
       slidesToSlide: 2, // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 768, min: 0 },
       items: 1,
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+
   return (
-    <Box
-      sx={{
-        width: "880px",
-        backgroundColor: "#fff",
-        borderRadius: "25px",
-        margin: "0px auto",
-      }}>
+    <CarouselStyled sx={{}}>
       <Typography
         variant="h4"
         gutterBottom
@@ -58,8 +54,8 @@ const MyCarousel = ({ allWorkout }) => {
               src={item.avatar ? item.avatar : logoworkout}
               //   srcSet={logoworkout}
               alt={item.data}
-              width="150px"
-              height="150px"
+              width="130px"
+              height="130px"
             />
             <Typography>
               {new Date(item.data).getDate()}/
@@ -71,8 +67,27 @@ const MyCarousel = ({ allWorkout }) => {
           </Box>
         ))}
       </Carousel>
-    </Box>
+    </CarouselStyled>
   );
 };
+
+const CarouselStyled = styled(Box)`
+  margin: 0px auto;
+  background: #fff;
+  width: 50%;
+  padding: 50px;
+  border-radius: 25px;
+  max-width: 850px;
+  @media (max-width: 1200px) {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    width: 95%;
+    max-width: 600px;
+    padding: 50px 25px;
+    justify-content: center;
+  }
+`;
 
 export default MyCarousel;

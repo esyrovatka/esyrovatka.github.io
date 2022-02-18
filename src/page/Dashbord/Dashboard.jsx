@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  currData,
-  isAuthorized,
-  workout,
-  workoutIsLoad,
-} from "../../redux/selectors.js";
+import { isAuthorized, workout, workoutIsLoad } from "../../redux/selectors.js";
 import { delWorkout, getAllExercise, getAllWorkout } from "../../redux/action";
 import { Box, Grid } from "@mui/material/";
 import Loader from "../../component/Loader.jsx";
@@ -16,21 +10,12 @@ import Header from "../../component/Header.jsx";
 import MyCarousel from "../../component/MyCarousel.jsx";
 import ExercisePreview from "../../component/ExercisePreview.jsx";
 import Chart from "../../component/chart.jsx";
-import PreviewWorkout from "../../component/PreviewWorkout.jsx";
-import styled from "styled-components";
 import WorkoutTime from "../../component/WorkoutTime.jsx";
 import VideoPreview from "../../component/VideoPreview.jsx";
+import styled from "styled-components";
 
 const Dashboard = () => {
-  const style = {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  };
-
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getAllExercise());
@@ -39,22 +24,9 @@ const Dashboard = () => {
 
   const isAuth = useSelector(isAuthorized);
   const allWorkout = useSelector(workout);
-  const currWorkoutDate = useSelector(currData);
   const Loading = useSelector(workoutIsLoad);
 
   const [workoutData, setWorkoutData] = useState([]); //all workout data
-  const [currWorkout, setCurrWorkout] = useState(); // curr data workout
-
-  useEffect(() => {
-    const result =
-      allWorkout &&
-      allWorkout.find(
-        (item) =>
-          new Date(item.data).getDate() === currWorkoutDate.getDate() &&
-          new Date(item.data).getMonth() === currWorkoutDate.getMonth()
-      );
-    setCurrWorkout(result);
-  }, [currWorkoutDate, allWorkout]);
 
   useEffect(() => {
     allWorkout.map(
@@ -64,48 +36,72 @@ const Dashboard = () => {
 
   useEffect(() => {
     const filterData = allWorkout.map((item) => new Date(item.data));
-    // allWorkout && allWorkout.map((item) => new Date(item.data));
     setWorkoutData(filterData);
   }, [allWorkout]);
-
-  const createWorkoutLink = () => {
-    history.push("/workout");
-  };
-
-  const editWorkoutLink = () => {
-    history.push("/workout/edit");
-  };
 
   return isAuth ? (
     !Loading ? (
       <Box component="main" sx={{ width: "100%" }}>
         <Header />
-        <Grid container sx={{ marginTop: "40px" }}>
-          <Grid item xs={8}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            margin: "30px auto",
+          }}>
+          <Chart workoutData={workoutData} />
+          <CalendarComponent workoutData={workoutData} />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            margin: "30px auto",
+          }}>
+          <MyCarousel allWorkout={allWorkout} />
+          <WorkoutTime />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            margin: "30px auto",
+          }}>
+          <ExercisePreview />
+          <VideoPreview />
+        </Box>
+
+        {/* <GridStyled container>
+          <Grid item lg={8} md={12}>
             <Chart workoutData={workoutData} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item lg={4} md={12}>
             <CalendarComponent workoutData={workoutData} />
           </Grid>
-        </Grid>
+        </GridStyled> */}
 
-        <Grid container sx={{ marginTop: "40px" }}>
-          <Grid item xs={8}>
+        {/* <GridStyled container>
+          <Grid item lg={8} md={12} sx={{ width: "70%" }}>
             <MyCarousel allWorkout={allWorkout} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item lg={4} md={12}>
             <WorkoutTime />
           </Grid>
-        </Grid>
+        </GridStyled> */}
 
-        <Grid container sx={{ marginTop: "40px" }}>
-          <Grid item xs={8}>
+        {/*<Grid container sx={gridContStyle}>
+          <Grid item lg={8} md={12}>
             <ExercisePreview />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item lg={4} md={12}>
             <VideoPreview />
           </Grid>
-        </Grid>
+        </Grid> */}
       </Box>
     ) : (
       <Loader />
@@ -115,6 +111,12 @@ const Dashboard = () => {
   );
 };
 
-// const CalendarBox = styled()``;
+const GridStyled = styled(Grid)`
+  margin-top: 40px;
+  @media (max-width: 1200px) {
+    justify-content: center;
+    margin-top: 10px;
+  }
+`;
 
 export default Dashboard;

@@ -60,7 +60,7 @@ const LinkMenu = () => {
         clickHandler={dashboardLink}
         name="Dashboard"
         path="/"
-        icon={coolicon}
+        // icon={coolicon}
       />
       <HeaderLink
         clickHandler={exerciseLink}
@@ -84,11 +84,11 @@ const LinkMenu = () => {
         invisible={!currWorkout && true}
         path="/workout/edit"
       />
-      <HeaderLink
+      {/* <HeaderLink
         clickHandler={settingsLink}
         name="Settings"
         path="/settings"
-      />
+      /> */}
     </>
   ) : (
     <>

@@ -119,7 +119,7 @@ const AuthField = ({
 const AuthPage = styled(Container)`
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
   min-width: 100%;
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
   height: 100vh;
   padding: 0px;

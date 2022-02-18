@@ -23,7 +23,7 @@ export const ListItem = ({
 }) => {
   const textFieldStyle = {
     width: 150,
-    padding: "0px 10px",
+    margin: "0px 10px",
   };
 
   const [currExer, setCurrExer] = useState(exercise);

@@ -70,8 +70,12 @@ const WorkoutItem = ({ type, name, time, date }) => {
 };
 
 const WorkoutTimeStyle = styled(Box)`
-  max-width: 300px;
   margin: 0 auto;
+  width: 40%;
+  max-width: 350px;
+  // @media (max-width: 1200px) {
+  //   width: 110%;
+  // }
   .workout-add {
     display: flex;
     justify-content: space-between;
