@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/component/HeaderLink/HeaderLink.css","webpack://src/App.css"],"names":[],"mappings":"AAAA,QACE,aACF,CCFA,MACE,wBAAyB,CACzB,gBACF","file":"main.594960d4.chunk.css","sourcesContent":[".active {\n  color: #2d9cdb;\n}\n","#main {\n  background-color: #f0f0f0;\n  min-height: 100vh;\n}\n"]}
